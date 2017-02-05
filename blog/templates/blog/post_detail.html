@@ -14,11 +14,17 @@
             <span style="display: inline-block; width: 80px;"></span>
             {% if post.published_date %}
 
-                    {{ post.published_date }}
-                    {% if user.is_authenticated %}
-                        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                    {% endif %}
-
+                {{ post.published_date }}
+                {% if user.is_authenticated %}
+                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
+            {% else %}
+                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                {% if user.is_authenticated %}
+                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
             {% endif %}
             </h5>
             </block>
